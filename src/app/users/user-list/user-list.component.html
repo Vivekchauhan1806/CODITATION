@@ -1,0 +1,50 @@
+<div class='card-container'>
+    <div class='card-header'>
+      {{pageTitle}}
+    </div>
+    <div class='card-body'>
+      <div class='row'>
+        <div class='col-md-2'>Search:</div>
+        <div class='col-md-4'>
+          <input type='text'
+                 [(ngModel)]='listFilter' />
+        </div>
+        <!-- <button onclick="performFilter()">Search</button> -->
+      </div>
+      <div class='row'
+           *ngIf='listFilter'>
+        <div class='col-md-6'>
+          <h4>Serach by: {{listFilter}}</h4>
+        </div>
+      </div>
+      <div class='container'>
+        <table class='table'
+               *ngIf='users && users.length'>
+          
+          <tbody>
+            <tr *ngFor='let user of filteredProducts'>
+              
+              <td>
+                <a [routerLink]="['/users', user.id]">
+                  {{ user.login}}
+                </a>
+              </td>
+              <td>
+                <img class='center-block img-responsive'
+             [style.width.px]='50'
+             [style.margin.px]='2'
+             [src]='user.avatar_url'
+             [title]='user.login'>
+              </td>
+              
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div *ngIf='errorMessage'
+     class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>
